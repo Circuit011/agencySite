@@ -1,0 +1,191 @@
+---
+import Button from "../shared/Button.astro";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import ByNumber from "./ByNumber.astro";
+
+---
+
+<section class="relative pt-32 lg:pt-36">
+    <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
+        <div class="absolute w-full lg:w-1/2 inset-y-0 lg:right-0 ">
+            <span class="absolute -left-6 md:left-4 top-24 lg:top-28 w-24 h-24 rotate-90 skew-x-12 rounded-3xl bg-green-400 blur-xl opacity-60 lg:opacity-95 lg:block hidden"></span>
+            <span class="absolute right-4 bottom-12 w-24 h-24 rounded-3xl bg-primary blur-xl opacity-80"></span>
+        </div>
+        <span class="w-4/12 lg:w-2/12 aspect-square bg-gradient-to-tr from-primary to-green-400 absolute -top-5 lg:left-0 rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"></span>
+        <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 
+        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
+            
+            <h1 class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight xl:text-6xl/tight
+             font-bold text-heading-1">
+             <span id="typing-header-non-gradient">Digital</span> <span id="typing-header-gradient" class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600">Engineering</span> <span id="typing-header-non-gradient-2">at its Finest.</span><span id="typing-cursor">|</span>
+            </h1>
+            <Paragraph className="mt-8">
+                Stay ahead of the AI curve with expert digital solutions. Fast, flexible, and built for results. Let’s power your next project—together.
+            </Paragraph>
+            <div class="mt-10  w-full flex max-w-md mx-auto lg:mx-0">
+                <div class="flex sm:flex-row flex-col gap-5 w-full">
+                    <form action="mailto:elitetechaisolutions@gmail.com" method="post" enctype="text/plain" class="py-1 pl-6 w-full pr-1 flex gap-3 items-center text-heading-3 shadow-lg shadow-box-shadow
+                      border border-box-border bg-box-bg rounded-full ease-linear focus-within:bg-body  focus-within:border-primary">
+                        <span class="min-w-max pr-2 border-r border-box-border">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
+                            </svg>                                                                  
+                        </span>
+                        <input type="email" name="" id="" placeholder="mail@contact.com" class="w-full py-3 outline-none bg-transparent">
+                        <Button variant={"primary"} className={"min-w-max text-white"}>
+                            <span class="hidden sm:flex relative z-[5]">
+                                Get Started
+                            </span>
+                            <span class="flex sm:hidden relative z-[5]">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                </svg>                                      
+                            </span>
+                        </Button> <!-- width 2350 2359 -->
+                    </form> <!-- WE WILL BE PLACING IN THE CODE FOR THE ARTIST'S PORTFOLIO WITH THE CONNECTING GLOBE  https://andreadiotalleviart.com -->
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
+            <div id="sketch" class="rounded-3xl object-cover" style="width: 585px; height: 480px;"></div>
+        </div>
+    </Container>
+    <ByNumber/>
+</section>
+
+<script>
+    // @ts-nocheck
+    import p5 from "p5"
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        console.log("DOMContentLoaded event fired"); // Debugging line
+        const sketchElement = document.querySelector("#sketch")
+        console.log("sketchElement:", sketchElement); // Debugging line
+        const canvasWidth = sketchElement?.clientWidth || 0
+        const canvasHeight = sketchElement?.clientHeight || 0
+        console.log("canvasWidth:", canvasWidth, "canvasHeight:", canvasHeight); // Debugging line
+
+        if (!sketchElement) return
+
+        const getRandomColor = () => {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, 0.5)`;
+        };
+
+        const sketch = p5 => {
+            let t = 0
+
+            p5.setup = () => {
+                console.log("p5.setup called"); // Debugging line
+                p5.createCanvas(canvasWidth, canvasHeight)
+                p5.clear()
+                p5.noFill()
+            }
+
+            p5.draw = () => {
+                console.log("p5.draw called"); // Debugging line
+                if (t > 0) {
+                    p5.translate(p5.width / 2, p5.height / 2)
+                    const n = p5.noise
+                    const a = 0.5 * p5.min(p5.width, p5.height)
+                    let b = n(t) * 6
+                    let c = n(t + 60) * 6
+                    p5.stroke(getRandomColor())
+                    p5.line(
+                        p5.cos(b) * a,
+                        p5.sin(b) * a,
+                        p5.cos(c) * a,
+                        p5.sin(c) * a
+                    )
+                }
+                t++
+            }
+
+            p5.mouseClicked = () => {
+                if (
+                    p5.mouseX > 0 &&
+                    p5.mouseX < p5.width &&
+                    p5.mouseY > 0 &&
+                    p5.mouseY < p5.height
+                ) {
+                    p5.noiseSeed(p5.random(800))
+                    p5.clear()
+                    t = 0
+                    p5.draw()
+                }
+            }
+
+            p5.windowResized = () => {
+                const newElement = document.querySelector("#sketch")
+                p5.resizeCanvas(
+                    newElement?.clientWidth,
+                    newElement?.clientHeight
+                )
+                t = 0
+                p5.draw()
+            }
+        }
+
+        new p5(sketch, sketchElement)
+
+        // Typing effect for the header
+        const typingHeaderNonGradient = document.getElementById('typing-header-non-gradient');
+        const typingHeaderGradient = document.getElementById('typing-header-gradient');
+        const typingHeaderNonGradient2 = document.getElementById('typing-header-non-gradient-2');
+        const typingCursor = document.getElementById('typing-cursor');
+
+        const textNonGradient = typingHeaderNonGradient.innerText;
+        const textGradient = typingHeaderGradient.innerText;
+        const textNonGradient2 = typingHeaderNonGradient2.innerText;
+
+        typingHeaderNonGradient.innerText = '';
+        typingHeaderGradient.innerText = '';
+        typingHeaderNonGradient2.innerText = '';
+
+        let index = 0;
+
+        const type = () => {
+            if (index < textNonGradient.length) {
+                typingHeaderNonGradient.innerHTML += textNonGradient.charAt(index) === ' ' ? '&nbsp;' : textNonGradient.charAt(index);
+            } else if (index < textNonGradient.length + textGradient.length) {
+                typingHeaderGradient.innerHTML += textGradient.charAt(index - textNonGradient.length) === ' ' ? '&nbsp;' : textGradient.charAt(index - textNonGradient.length);
+            } else if (index < textNonGradient.length + textGradient.length + textNonGradient2.length) {
+                typingHeaderNonGradient2.innerHTML += textNonGradient2.charAt(index - textNonGradient.length - textGradient.length) === ' ' ? '&nbsp;' : textNonGradient2.charAt(index - textNonGradient.length - textGradient.length);
+            }
+            index++;
+            if (index <= textNonGradient.length + textGradient.length + textNonGradient2.length) {
+                setTimeout(type, index < textNonGradient.length + textGradient.length ? 50 : 1200); // Adjust typing speed here
+            }
+        }
+
+        type();
+
+        // Blinking cursor effect
+        setInterval(() => {
+            typingCursor.style.visibility = typingCursor.style.visibility === 'visible' ? 'hidden' : 'visible';
+        }, 500);
+    })
+</script>
+
+<style>
+    #typing-header-non-gradient, #typing-header-gradient, #typing-header-non-gradient-2 {
+        display: inline;
+    }
+    #typing-cursor {
+        display: inline;
+        font-weight: bold;
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+        from, to {
+            visibility: visible;
+        }
+        50% {
+            visibility: hidden;
+        }
+    }
+</style>
